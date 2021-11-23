@@ -202,16 +202,6 @@ public class driver extends Thread {
 		}
 		System.out.print("\n\n");
 		
-		/*for(int i=0; i<vec1.size(); i++) {
-			vec.add(vec1.get(i));
-		}
-		for(int i=0; i<vec2.size(); i++) {
-			vec.add(vec2.get(i));
-		}
-		
-		match(vec,vocabVec,matchedWords);*/
-		//countWords(matchedWords,vecMatchWords,vecMatchCount);
-		
 		while(true) {
 			System.out.println("\n\nFollowing are the functionalities you can perform");
 			System.out.println("1. Display BST from vocabulaory file");
@@ -230,9 +220,6 @@ public class driver extends Thread {
 				}
 			}
 			else if(op==3) {
-				//for(int i=0; i<vecMatchWords.size(); i++) {
-				//	System.out.println(vecMatchWords.get(i)+"\t"+vecMatchCount.get(i));
-				//}
 				word[] wordy = new word[1000];
 				for(int i=0;i<1000;i++) {
 					word w = new word();
@@ -276,13 +263,40 @@ public class driver extends Thread {
 				String[] tok1 = inp.split(" ");
 				for(int i=0;i<tok1.length;i++) {
 					ind++;
+					System.out.println(tok1[i]);
 				}
 				System.out.println("No of words to search: "+ ind);
+				
+				word[] wordy = new word[1000];
+				for(int i=0;i<1000;i++) {
+					word w = new word();
+					wordy[i] = w;
+				}
+				for(int i=0;i<tok1.length;i++) {
+					word w = new word();
+					wordy[i].word1=tok1[i];
+					wordy[i].freq=0;
+				}
+				int county=0;
+				for(int i=0;i<tok.size();i++) {
+					for(int j=0;j<tok.get(i).size();j++) {
+						for(int m=0;m<wordy.length;m++) {
+							if(wordy[m].word1.compareTo(tok.get(i).get(j))==0) {
+								wordy[m].freq++;
+							}
+						}
+					}
+				}
+				for(int i=0;i<1000;i++) {
+					if(wordy[i].freq!=0) {
+						System.out.println(wordy[i].word1+"\t"+wordy[i].freq);
+					}
+				}
+				
 			}
 			else {
 				return;
 			}
 		}
 	}
-	
 }
